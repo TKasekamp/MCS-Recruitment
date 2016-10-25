@@ -1,2 +1,19 @@
-Weather information will be shown here shortly.<br>
-<b>Current status:</b> {{ status }}
+<h1>Weather information will be shown here shortly.</h1><br>
+<b>Time updated:</b> {{ time }} 
+
+<table class="table">
+<tr>
+    <th>Temp</th>
+    <th>Humidity</th> 
+    <th>Barometer</th>
+	<th>Wind direction</th>
+	<th>Wind speed</th>
+  </tr>
+  <tr *ngFor="let weather of weathers">
+    <td>{{weather.temp}}</td>
+	<td>{{weather.humid}}</td>
+	<td>{{weather.baro}}</td>
+	<td>{{weather.wind_dir}}</td>
+	<td>{{weather.wind_len}}</td>
+  </tr>
+</table>
