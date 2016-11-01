@@ -1,25 +1,39 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-import { Http, Response } from '@angular/http';
-import { Weather }           from './weather';
-import { Observable }     from 'rxjs/Observable';
+import {Http, Response} from '@angular/http';
+import {Weather}           from './weather';
+import {Observable}     from 'rxjs/Observable';
+
+///<reference path="/typings/xml2js/xml2js.d.ts"/>
+import {parseString} from 'xml2js';
 
 @Injectable()
 export class WeatherService {
-    private weatherUrl = 'http://meteo.physic.ut.ee/xml/data3.php';  // URL to web API
-  
-  constructor (private http: Http) {}
-  getWeathers (): Observable<Weather[]> {
-    return this.http.get(this.weatherUrl)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+  // private weatherUrl = 'http://meteo.physic.ut.ee/xml/data3.php';  // URL to web API'
+  private localUrl = '/assets/data/data.xml'; // Static stuff should probably be somewhere else
+
+  constructor(private http: Http) {
   }
+
+  getWeathers(): Observable<Weather[]> {
+    return this.http.get(this.localUrl)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   private extractData(res: Response) {
-    // console.error(res);
-    let body = res.json();
-    return body.data || { };
+    // console.error(res.text());
+
+    let j = parseString(res.text(), function (err, result) {
+        // console.error(result)
+        return result;
+      }
+    );
+    console.error(j);
+    return j;
   }
-  private handleError (error: Response | any) {
+
+  private handleError(error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {

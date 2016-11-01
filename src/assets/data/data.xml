@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE meteodata SYSTEM "http://meteo.physic.ut.ee/xml/ilmajaam2.dtd">
+<!-- TY keskkonnafyysika instituudi ilmajaam internetis http://meteo.physic.ut.ee/ -->
+<meteodata time="2016-10-27 16:08:10" ts="1477573690">
+  <data id="temp" name="Temperatuur" unit="&amp;deg;C">5.41071428571</data>
+  <data id="humid" name="Niiskus" unit="%">84.095</data>
+  <data id="baro" name="&amp;Otilde;hur&amp;otilde;hk" unit="hPa">1023.525</data>
+  <data id="wind_dir" name="Tuule suund" unit="&amp;deg;">214.468478839794</data>
+  <data id="wind_len" name="Tuule kiirus" unit="m/s">5.37942424893222</data>
+  <data id="lux" name="Valgustatus" unit="lx">-</data>
+  <data id="sole" name="Kiirgusvoog" unit="W/m&lt;sup&gt;2&lt;/sup&gt;">23.8718597359</data>
+  <data id="gamma" name="Radioaktiivsus" unit="&amp;micro;Sv/h">-</data>
+  <data id="precip" name="Sademed" unit="mm/s">0</data>
+</meteodata>
+
+
