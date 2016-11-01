@@ -1,15 +1,15 @@
 <h1>Weather information will be shown here shortly.</h1><br>
-<b>Time updated:</b> {{ time }} 
+<b>Time updated:</b> {{ meteodata.time }}
 
 <table class="table">
 <tr>
     <th>Temp</th>
-    <th>Humidity</th> 
+    <th>Humidity</th>
     <th>Barometer</th>
 	<th>Wind direction</th>
 	<th>Wind speed</th>
   </tr>
-  <tr *ngFor="let weather of weathers">
+  <tr *ngFor="let weather of meteodata.data">
     <td>{{weather.temp}}</td>
 	<td>{{weather.humid}}</td>
 	<td>{{weather.baro}}</td>
