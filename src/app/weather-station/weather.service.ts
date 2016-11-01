@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
 import {Http, Response} from '@angular/http';
-import {Weather}           from './weather';
+import {Meteodata}           from './weather';
 import {Observable}     from 'rxjs/Observable';
 
 ///<reference path="/typings/xml2js/xml2js.d.ts"/>
@@ -15,7 +15,7 @@ export class WeatherService {
   constructor(private http: Http) {
   }
 
-  getWeathers(): Observable<Weather[]> {
+  getMeteodata(): Observable<Meteodata> {
     return this.http.get(this.localUrl)
       .map(this.extractData)
       .catch(this.handleError);

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {WeatherService} from './weather.service';
-import {Weather} from './weather';
+import {Meteodata} from './weather';
 
 @Component({
   templateUrl: './weather-station.html',
@@ -10,7 +10,7 @@ import {Weather} from './weather';
 })
 export class WeatherStationComponent implements OnInit {
   errorMessage: string;
-  weathers: Weather[];
+  meteodata: Meteodata;
   time: string;
   mode = 'Observable';
 
@@ -18,13 +18,13 @@ export class WeatherStationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getWeathers();
+    this.getMeteodata();
   }
 
-  getWeathers() {
-    this.weatherService.getWeathers()
+  getMeteodata() {
+    this.weatherService.getMeteodata()
       .subscribe(
-        weathers => this.weathers = weathers,
+        meteodata => this.meteodata = meteodata,
         // time => this.time = time,
         error => this.errorMessage = <any>error);
   }
