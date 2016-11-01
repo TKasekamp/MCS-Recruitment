@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
 import {Http, Response} from '@angular/http';
-import {Meteodata}           from './weather';
+import {Meteodata, Weather}           from './weather';
 import {Observable}     from 'rxjs/Observable';
 
 ///<reference path="/typings/xml2js/xml2js.d.ts"/>
@@ -21,16 +21,34 @@ export class WeatherService {
       .catch(this.handleError);
   }
 
-  private extractData(res: Response) {
-    // console.error(res.text());
-
-    let j = parseString(res.text(), function (err, result) {
-        // console.error(result)
-        return result;
+  private extractData(res: Response): Meteodata {
+    let e: string = "";
+    parseString(res.text(), function (err: any, result: any): void {
+        e = result;
       }
     );
-    console.error(j);
-    return j;
+    console.log(e);
+    // console.log(e['meteodata']['$']);
+    let meteo: Meteodata = new Meteodata();
+
+    meteo.time = e['meteodata']['$']['time'];
+    // meteo.ts = e['meteodata']['$']['ts'].toNumber();
+    for (let i in e['meteodata']['$']['data']) {
+      console.log(i);
+    }
+
+    console.log(meteo);
+    return meteo;
+  }
+
+
+  toMeteodata(result: any): Meteodata {
+    let data: Weather[];
+    for (let i in result['meteodata']['data']) {
+      console.log(i);
+    }
+
+    return null;
   }
 
   private handleError(error: Response | any) {

@@ -25,7 +25,6 @@ export class WeatherStationComponent implements OnInit {
     this.weatherService.getMeteodata()
       .subscribe(
         meteodata => this.meteodata = meteodata,
-        // time => this.time = time,
         error => this.errorMessage = <any>error);
   }
 }
