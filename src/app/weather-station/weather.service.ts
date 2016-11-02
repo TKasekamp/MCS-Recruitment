@@ -23,11 +23,11 @@ export class WeatherService {
 
   private extractData(res: Response): Meteodata {
     let e: string = '';
-    parseString(res.text(), function (err: any, result: any): void {
+    parseString(res.text(), function (err: any, result: any) {
         e = result;
       }
     );
-    // console.log(e);
+
     let meteo: Meteodata = new Meteodata();
 
     meteo.time = e['meteodata']['$']['time'];
@@ -54,7 +54,7 @@ export class WeatherService {
 
     }
 
-    console.log(meteo);
+    // console.log(meteo);
     return meteo;
   }
 

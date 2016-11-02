@@ -1,19 +1,23 @@
-<h1>Weather information will be shown here shortly.</h1><br>
-<b>Time updated:</b> {{ meteodata }}
+<h1>Weather station</h1><br>
 
-<!--<table class="table">
-<tr>
-    <th>Temp</th>
-    <th>Humidity</th>
-    <th>Barometer</th>
-	<th>Wind direction</th>
-	<th>Wind speed</th>
-  </tr>
-  <tr *ngFor="let weather of meteodata.data">
-    <td>{{weather.temp}}</td>
-	<td>{{weather.humid}}</td>
-	<td>{{weather.baro}}</td>
-	<td>{{weather.wind_dir}}</td>
-	<td>{{weather.wind_len}}</td>
-  </tr>
-</table>-->
+<!-- met is async, check needed before display -->
+<div *ngIf="met">
+  <b>Time updated:</b> {{ met.time }}
+
+  <table class="table">
+    <tr>
+      <th>Temp</th>
+      <th>Humidity</th>
+      <th>Barometer</th>
+      <th>Wind direction</th>
+      <th>Wind speed</th>
+    </tr>
+    <tr>
+      <td>{{ met.temp }}</td>
+      <td>{{met.humid}}</td>
+      <td>{{met.baro}}</td>
+      <td>{{met.wind_dir}}</td>
+      <td>{{met.wind_len}}</td>
+    </tr>
+  </table>
+</div>

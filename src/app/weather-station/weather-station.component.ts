@@ -10,9 +10,7 @@ import {Meteodata} from './meteodata';
 })
 export class WeatherStationComponent implements OnInit {
   errorMessage: string;
-  meteodata: Meteodata;
-  time: string;
-  mode = 'Observable';
+  met: Meteodata;
 
   constructor(private weatherService: WeatherService) {
   }
@@ -24,8 +22,10 @@ export class WeatherStationComponent implements OnInit {
   getMeteodata() {
     this.weatherService.getMeteodata()
       .subscribe(
-        meteodata => this.meteodata = meteodata,
-        error => this.errorMessage = <any>error);
+        result => this.met = result,
+        error => this.errorMessage = <any>error,
+        () => console.log('data loaded'));
+
   }
 }
 
