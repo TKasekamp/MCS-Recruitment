@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {WeatherService} from './weather.service';
-import {Meteodata} from './weather';
+import {Meteodata} from './meteodata';
 
 @Component({
   templateUrl: './weather-station.html',

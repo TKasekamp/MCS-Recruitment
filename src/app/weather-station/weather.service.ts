@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
 import {Http, Response} from '@angular/http';
-import {Meteodata}           from './weather';
+import {Meteodata}           from './meteodata';
 import {Observable}     from 'rxjs/Observable';
 
 ///<reference path="/typings/xml2js/xml2js.d.ts"/>
