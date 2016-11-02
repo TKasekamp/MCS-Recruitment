@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
 import {Http, Response} from '@angular/http';
-import {Meteodata, Weather}           from './weather';
+import {Meteodata}           from './weather';
 import {Observable}     from 'rxjs/Observable';
 
 ///<reference path="/typings/xml2js/xml2js.d.ts"/>
@@ -22,37 +22,43 @@ export class WeatherService {
   }
 
   private extractData(res: Response): Meteodata {
-    let e: string = "";
+    let e: string = '';
     parseString(res.text(), function (err: any, result: any): void {
         e = result;
       }
     );
-    console.log(e);
-    // console.log(e['meteodata']['$']);
+    // console.log(e);
     let meteo: Meteodata = new Meteodata();
 
     meteo.time = e['meteodata']['$']['time'];
-    // meteo.ts = e['meteodata']['$']['ts'].toNumber();
-    for (let i in e['meteodata']['$']['data']) {
-      console.log(i);
+    for (let i of e['meteodata']['data']) {
+      switch (i['$']['id']) {
+        case 'temp':
+          meteo.temp = i['_'];
+          break;
+        case 'wind_dir':
+          meteo.wind_dir = i['_'];
+          break;
+        case 'wind_len':
+          meteo.wind_len = i['_'];
+          break;
+        case 'humid':
+          meteo.humid = i['_'];
+          break;
+        case 'baro':
+          meteo.baro = i['_'];
+          break;
+        default:
+          break;
+      }
+
     }
 
     console.log(meteo);
     return meteo;
   }
 
-
-  toMeteodata(result: any): Meteodata {
-    let data: Weather[];
-    for (let i in result['meteodata']['data']) {
-      console.log(i);
-    }
-
-    return null;
-  }
-
   private handleError(error: Response | any) {
-    // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';
